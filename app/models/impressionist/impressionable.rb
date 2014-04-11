@@ -39,6 +39,10 @@ module Impressionist
         imps = imps.where("impressions.message = ?", options[:message])
       end
 
+      if options[:user_id]
+        imps = imps.where("impressions.user_id = ?", options[:user_id])
+      end
+
       # Count all distinct impressions unless the :all filter is provided.
       distinct = options[:filter] != :all
       if Rails::VERSION::MAJOR == 4
